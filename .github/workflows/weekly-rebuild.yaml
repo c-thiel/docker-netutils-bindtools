@@ -1,0 +1,13 @@
+name: Weekly build
+on:
+  schedule:
+    # * is a special character in YAML so you have to quote this string
+    - cron:  '* * * * 0'
+jobs:
+  curl:
+    runs-on: ubuntu-latest
+    steps:
+    - name: curl
+      uses: wei/curl@v1
+      with:
+        args: -X POST ${{ secrets.DOCKERHUB_TRIGGER_URL }}
